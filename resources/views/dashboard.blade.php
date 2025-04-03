@@ -10,8 +10,11 @@
                         <i class="fas fa-tachometer-alt"></i> Bem-vindo, {{ Auth::user()->name }}!
                     </h1>
                     <p class="lead text-muted">Gerencie suas operações de forma simples e eficiente.</p>
-                    <a href="{{ route('dashboard.consulta-veicular') }}" class="btn btn-primary mt-3">
+                    <a href="{{ route('dashboard.calcular-parcelas') }}" class="btn btn-primary mt-3">
                         <i class="fas fa-calculator"></i> Calcular Parcelas
+                    </a>
+                    <a href="{{ route('dashboard.consulta-veicular') }}" class="btn btn-primary mt-3">
+                        <i class="fas fa-car"></i> Calcular Parcelas
                     </a>
                 </div>
             </div>

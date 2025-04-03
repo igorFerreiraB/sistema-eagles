@@ -38,12 +38,6 @@ class PlacaController extends Controller
                 ->with('error', 'Placa não encontrada ou erro na consulta. Verifique os logs.');
         }
 
-        if (isset($resultado['fipe']['dados'])) {
-            foreach ($resultado['fipe']['dados'] as &$fipe) {
-                $fipe['texto_valor'] = 'R$ ' . number_format(floatval($fipe['texto_valor']), 2, ',', '.');
-            }
-        }
-
         Log::debug("Consulta bem-sucedida para placa: {$placa}");
         return view('placas.resultado', compact('resultado'));
     }
