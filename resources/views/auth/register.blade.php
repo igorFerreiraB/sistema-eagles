@@ -11,14 +11,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        .btn-purple {
+        .btn-blue {
             background-color: #003366;
             color: #fff;
             border: none;
         }
 
-        .btn-purple:hover {
+        .btn-blue:hover {
             background-color: #003366;
+        }
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+
+        .is-invalid {
+            border-color: #dc3545 !important;
         }
     </style>
 </head>
@@ -48,25 +57,35 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input id="email" type="email" name="email" class="form-control" placeholder="Email" required autocomplete="username">
+                        <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" placeholder="Email" value="{{ old('email') }}" required autocomplete="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <i class="fas fa-envelope"></i>
                             </div>
                         </div>
+                        @error('email')
+                            <div class="invalid-feedback" style="display: block; width: 100%;">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="input-group mb-3">
-                        <input id="password" type="password" name="password" class="form-control" placeholder="Senha" required autocomplete="new-password">
+                        <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Senha" required autocomplete="new-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <i class="fas fa-lock"></i>
                             </div>
                         </div>
+                        @error('password')
+                            <div class="invalid-feedback" style="display: block; width: 100%;">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="input-group mb-3">
-                        <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" placeholder="Confirmar Senha" required autocomplete="new-password">
+                        <input id="password_confirmation" type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" placeholder="Confirmar Senha" required autocomplete="new-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <i class="fas fa-lock"></i>
@@ -85,7 +104,7 @@
                         </div>
                         
                         <div class="col-4">
-                            <button type="submit" class="btn btn-purple btn-block">{{ __('Registrar') }}</button>
+                            <button type="submit" class="btn btn-blue btn-block">{{ __('Registrar') }}</button>
                         </div>
                     </div>
                 </form>
@@ -101,5 +120,16 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <script>
+        document.getElementById('password').addEventListener('input', function() {
+            const feedback = document.getElementById('password-feedback');
+            if (this.value.length > 0 && this.value.length < 8) {
+                feedback.style.display = 'block';
+                feedback.textContent = 'A senha deve ter no mínimo 8 caracteres';
+            } else {
+                feedback.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>

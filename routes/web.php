@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ParcelaController;
 use App\Http\Controllers\PlacaController;
+use App\Http\Controllers\HistoricoVeicularController;
 
 Route::get('/', function () {
     return view('home');
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::get('/consulta-veicular', [PlacaController::class, 'index'])->name('consulta-veicular');
         Route::post('/consulta-veicular', [PlacaController::class, 'consultar'])->name('consulta-veicular.post');
+
+        // Route::get('/historico', [HistoricoVeicularController::class, 'index'])->name('historico.index');
     });
     
 

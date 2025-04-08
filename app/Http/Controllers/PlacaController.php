@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlacaConsulta;
 use App\Services\PlacaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -11,12 +12,12 @@ class PlacaController extends Controller
     protected $placaService;
 
     public function __construct(PlacaService $placaService)
-    {
+    {   
         $this->placaService = $placaService;
     }
 
     public function index()
-    {
+    {   
         return view('placas.consulta');
     }
 
@@ -35,7 +36,7 @@ class PlacaController extends Controller
             Log::error("Consulta retornou nulo para placa: {$placa}");
             return back()
                 ->withInput()
-                ->with('error', 'Placa não encontrada ou erro na consulta. Verifique os logs.');
+                ->with('error', 'Placa não encontrada ou erro na consulta.');
         }
 
         Log::debug("Consulta bem-sucedida para placa: {$placa}");
