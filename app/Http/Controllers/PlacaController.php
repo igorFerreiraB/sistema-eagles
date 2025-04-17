@@ -12,12 +12,12 @@ class PlacaController extends Controller
     protected $placaService;
 
     public function __construct(PlacaService $placaService)
-    {   
+    {
         $this->placaService = $placaService;
     }
 
     public function index()
-    {   
+    {
         return view('placas.consulta');
     }
 

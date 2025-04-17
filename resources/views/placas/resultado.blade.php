@@ -78,26 +78,37 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Combustível:</strong></span>
-                            <span>{{ $resultado['extra']['combustivel'] }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Espécie:</strong></span>
-                            <span>{{ $resultado['extra']['especie'] }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Passageiros:</strong></span>
-                            <span>{{ $resultado['extra']['quantidade_passageiro'] }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Chassi:</strong></span>
-                            <span>{{ $resultado['chassi'] }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Tipo de Montagem:</strong></span>
-                            <span>{{ $resultado['extra']['tipo_montagem'] == '1' ? 'Nacional' : 'Importado' }}</span>
-                        </li>
+                        @if(isset($resultado['extra']))
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Combustível:</strong></span>
+                                <span>{{ $resultado['extra']['combustivel'] ?? 'Não informado' }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Espécie:</strong></span>
+                                <span>{{ $resultado['extra']['especie'] ?? 'Não informado' }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Passageiros:</strong></span>
+                                <span>{{ $resultado['extra']['quantidade_passageiro'] ?? 'Não informado' }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Tipo de Montagem:</strong></span>
+                                <span>
+                                    @if(isset($resultado['extra']['tipo_montagem']))
+                                        {{ $resultado['extra']['tipo_montagem'] == '1' ? 'Nacional' : 'Importado' }}
+                                    @else
+                                        Não informado
+                                    @endif
+                                </span>
+                            </li>
+                        @endif
+
+                        @if(isset($resultado['chassi']))
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Chassi:</strong></span>
+                                <span>{{ $resultado['chassi'] }}</span>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -110,24 +121,36 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <strong>Restrição 1:</strong> {{ $resultado['extra']['restricao_1'] }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Restrição 2:</strong> {{ $resultado['extra']['restricao_2'] }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Restrição 3:</strong> {{ $resultado['extra']['restricao_3'] }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Restrição 4:</strong> {{ $resultado['extra']['restricao_4'] }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Situação do Chassi:</strong> {{ $resultado['extra']['situacao_chassi'] == 'S' ? 'Regular' : 'Irregular' }}
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Situação do Veículo:</strong> {{ $resultado['extra']['situacao_veiculo'] == 'S' ? 'Regular' : 'Irregular' }}
-                        </li>
+                        @if(isset($resultado['extra']))
+                            <li class="list-group-item">
+                                <strong>Restrição 1:</strong> {{ $resultado['extra']['restricao_1'] ?? 'Não informado' }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Restrição 2:</strong> {{ $resultado['extra']['restricao_2'] ?? 'Não informado' }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Restrição 3:</strong> {{ $resultado['extra']['restricao_3'] ?? 'Não informado' }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Restrição 4:</strong> {{ $resultado['extra']['restricao_4'] ?? 'Não informado' }}
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Situação do Chassi:</strong>
+                                @if(isset($resultado['extra']['situacao_chassi']))
+                                    {{ $resultado['extra']['situacao_chassi'] == 'S' ? 'Regular' : 'Irregular' }}
+                                @else
+                                    Não informado
+                                @endif
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Situação do Veículo:</strong>
+                                @if(isset($resultado['extra']['situacao_veiculo']))
+                                    {{ $resultado['extra']['situacao_veiculo'] == 'S' ? 'Regular' : 'Irregular' }}
+                                @else
+                                    Não informado
+                                @endif
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -138,19 +161,31 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Tipo Proprietário:</strong></span>
-                            <span>{{ $resultado['extra']['tipo_doc_prop'] == 'Fisica' ? 'Pessoa Física' : 'Pessoa Jurídica' }}</span>
-                        </li>
-                        @if($resultado['extra']['tipo_doc_faturado'] != '')
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Documento Faturado:</strong></span>
-                            <span>{{ $resultado['extra']['faturado'] }} ({{ $resultado['extra']['tipo_doc_faturado'] }})</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>UF Faturado:</strong></span>
-                            <span>{{ $resultado['extra']['uf_faturado'] }}</span>
-                        </li>
+                        @if(isset($resultado['extra']))
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Tipo Proprietário:</strong></span>
+                                <span>
+                                    @if(isset($resultado['extra']['tipo_doc_prop']))
+                                        {{ $resultado['extra']['tipo_doc_prop'] == 'Fisica' ? 'Pessoa Física' : 'Pessoa Jurídica' }}
+                                    @else
+                                        Não informado
+                                    @endif
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Documento Faturado:</strong></span>
+                                <span>
+                                    @if(isset($resultado['extra']['tipo_doc_faturado']))
+                                        {{ $resultado['extra']['faturado'] }} ({{ $resultado['extra']['tipo_doc_faturado'] }})
+                                    @else
+                                        Não informado
+                                    @endif
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>UF Faturado:</strong></span>
+                                <span>{{ $resultado['extra']['uf_faturado'] ?? 'Não informado'}}</span>
+                            </li>
                         @endif
                     </ul>
                 </div>
@@ -197,26 +232,28 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Grupo:</strong></span>
-                            <span>{{ $resultado['extra']['grupo'] ?? 'N/A' }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Linha:</strong></span>
-                            <span>{{ $resultado['extra']['linha'] ?? 'N/A' }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Carroceria:</strong></span>
-                            <span>{{ $resultado['extra']['carroceria'] ?? 'N/A' }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Tipo de Carroceria:</strong></span>
-                            <span>{{ $resultado['extra']['tipo_carroceria'] ?? 'N/A' }}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><strong>Média de Preço:</strong></span>
-                            <span>R$ {{ number_format($resultado['extra']['media_preco'], 2, ',', '.') }}</span>
-                        </li>
+                        @if (isset($resultado['extra']))
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Grupo:</strong></span>
+                                <span>{{ $resultado['extra']['grupo'] ?? 'N/A' }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Linha:</strong></span>
+                                <span>{{ $resultado['extra']['linha'] ?? 'N/A' }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Carroceria:</strong></span>
+                                <span>{{ $resultado['extra']['carroceria'] ?? 'N/A' }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Tipo de Carroceria:</strong></span>
+                                <span>{{ $resultado['extra']['tipo_carroceria'] ?? 'N/A' }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>Média de Preço:</strong></span>
+                                <span>R$ {{ $resultado['extra']['media_preco'] ?? 'N/A' }}</span>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -250,7 +287,7 @@
             window.getSelection().addRange(range);
             document.execCommand('copy');
             window.getSelection().removeAllRanges();
-            
+
             const originalText = event.target.innerHTML;
             event.target.innerHTML = '<i class="fas fa-check"></i> Copiado!';
             setTimeout(() => {
