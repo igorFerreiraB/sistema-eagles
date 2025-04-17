@@ -26,7 +26,9 @@
                             <input type="number" name="numero_parcelas" id="numero_parcelas" class="form-control" min="1" max="12" required>
                         </div>
 
-                        <button type="submit" class="btn" style="background-color: #003366; color: white;">Calcular</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Consultar
+                        </button>
                     </form>
                 </div>
             </div>
