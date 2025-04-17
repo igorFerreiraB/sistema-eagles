@@ -14,7 +14,7 @@
                         <i class="fas fa-calculator"></i> Calcular Parcelas
                     </a>
                     <a href="{{ route('dashboard.consulta-veicular') }}" class="btn btn-primary mt-3">
-                        <i class="fas fa-car"></i> Calcular Parcelas
+                        <i class="fas fa-car"></i> Consulta Veicular
                     </a>
                 </div>
             </div>

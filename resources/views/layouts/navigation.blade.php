@@ -17,6 +17,17 @@
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="routesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="routesDropdown">
+                    <li><a class="dropdown-item" href="{{ route('dashboard.calcular-parcelas') }}"> Calcular Parcelas</a></li>
+                    <li><a class="dropdown-item" href="{{ route('dashboard.consulta-veicular') }}"> Consulta veicular</a></li>
+                </ul>
+            </li>
+        </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,7 +69,7 @@
                             <i class="nav-icon fas fa-home"></i>
                             <p>Dashboard</p>
                         </a>
-                    </li>   
+                    </li>
                     <li class="nav-item">
                         <a href="{{ route('dashboard.calcular-parcelas') }}" class="nav-link {{ request()->routeIs('calcular.parcelas') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-calculator"></i>
