@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <img src="{{ asset('images/car-dashboard.jpg') }}" alt="Dashboard de serviços" class="img-fluid rounded-3 shadow">
+                    <img src="{{ asset('images/car-dashboard.jpg') }}" alt="Dashboard de serviços" class="img-fluid rounded-3 shadow move-image">
                 </div>
             </div>
         </div>

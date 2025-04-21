@@ -25,9 +25,6 @@
                         Saiba como funciona <i class="fas fa-arrow-right ms-2"></i>
                     </a>
                 </div>
-                <div class="col-lg-6 mt-5 mt-lg-0">
-                    <img src="{{ asset('images/about-team.jpg') }}" alt="Nossa equipe" class="img-fluid rounded-3 shadow">
-                </div>
             </div>
         </div>
     </section>
