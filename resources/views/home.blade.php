@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Consultas Veiculares e Parcelamento de Multas')
+@section('title', 'Eagles Despachante')
 @section('description', 'Faça seu login na plataforma e tenha acesso a todos os nossos serviços com praticidade e segurança. Aproveite!')
 
 @section('content')
