@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Eagles Despachante')
+@section('title', 'Home')
 @section('description', 'Faça seu login na plataforma e tenha acesso a todos os nossos serviços com praticidade e segurança. Aproveite!')
 
 @section('content')
