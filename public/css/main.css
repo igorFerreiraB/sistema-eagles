@@ -223,7 +223,7 @@ body {
 .move-image {
     position: relative;
     top: -05px;
-    left: 160px;
+    margin-left: 155px;
     transition: all 0.3s ease;
 }
 
