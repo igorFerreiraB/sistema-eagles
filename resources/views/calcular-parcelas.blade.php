@@ -40,6 +40,11 @@
             <div class="card-header">
                 <h3 class="card-title">Resultado do Cálculo</h3>
             </div>
+            <div class="card-header">
+                <li class="list-group-item">
+                    Total: R$ {{ number_format($valorTotal, 2, ',', '.') }}
+                </li>
+            </div>
             <div class="card-body">
                 <p><strong>Valor da Multa:</strong> R$ {{ number_format($valorMulta, 2, ',', '.') }}</p>
                 <p><strong>Número de Parcelas:</strong> {{ $numeroParcelas }}x</p>

@@ -33,6 +33,6 @@ class ParcelaController extends Controller
             ];
         }
 
-        return view('calcular-parcelas', compact('parcelas', 'valorMulta', 'numeroParcelas'));
+        return view('calcular-parcelas', compact('parcelas', 'valorMulta', 'numeroParcelas', 'valorTotal'));
     }
 }
