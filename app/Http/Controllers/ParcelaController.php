@@ -14,7 +14,7 @@ class ParcelaController extends Controller
     public function calcular(Request $request)
     {
         $request->validate([
-            'valor_multa' => 'required|numeric|min:20',
+            'valor_multa' => 'required|numeric|min:50',
             'numero_parcelas' => 'required|integer|min:1|max:12',
         ]);
 

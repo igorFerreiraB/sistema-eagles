@@ -17,13 +17,19 @@
                     <form action="{{ route('dashboard.calcular-parcelas.post') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="valor_multa">Valor da Multa:</label>
-                            <input type="number" step="0.01" name="valor_multa" id="valor_multa" class="form-control" required>
+                            <label for="valor_multa">Valor da Multa (mínimo R$ 50,00):</label>
+                            <input type="number" step="0.01" name="valor_multa" id="valor_multa" class="form-control" required min="50">
+                            @error('valor_multa')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="numero_parcelas">Número de Parcelas (até 12x):</label>
                             <input type="number" name="numero_parcelas" id="numero_parcelas" class="form-control" min="1" max="12" required>
+                            @error('numero_parcelas')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary">
@@ -49,7 +55,6 @@
                 <p><strong>Valor da Multa:</strong> R$ {{ number_format($valorMulta, 2, ',', '.') }}</p>
                 <p><strong>Número de Parcelas:</strong> {{ $numeroParcelas }}x</p>
                 <p><strong>Comissão:</strong> 12%</p>
-
                 <h4>Parcelas:</h4>
                 <ul class="list-group">
                     @foreach($parcelas as $parcela)
