@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.2",
         "almasaeed2010/adminlte": "~3.2",
+        "barryvdh/laravel-dompdf": "^3.1",
         "guzzlehttp/guzzle": "^7.9",
         "jeroennoten/laravel-adminlte": "*",
         "laravel/framework": "^12.0",

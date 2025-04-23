@@ -64,6 +64,17 @@
                     @endforeach
                 </ul>
             </div>
+            <form action="{{ route('gerar.pdf') }}" method="POST" target="_blank">
+                @csrf
+                <input type="hidden" name="valor_multa" value="{{ $valorMulta }}">
+                <input type="hidden" name="numero_parcelas" value="{{ $numeroParcelas }}">
+                <input type="hidden" name="parcelas" value="{{ json_encode($parcelas) }}">
+                <input type="hidden" name="valor_total" value="{{ $valorTotal }}">
+
+                <button type="submit" class="btn btn-success mt-3">
+                    <i class="fas fa-file-pdf"></i> Baixar PDF
+                </button>
+            </form>
         </div>
     @endif
 @stop

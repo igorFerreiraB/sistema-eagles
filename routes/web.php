@@ -19,6 +19,8 @@ Route::get('/como-funciona', function () {
     return view('como-funciona');
 });
 
+Route::post('/gerar-pdf', [ParcelaController::class, 'gerarPDF'])->name('gerar.pdf');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -33,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Route::get('/historico', [HistoricoVeicularController::class, 'index'])->name('historico.index');
     });
-    
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

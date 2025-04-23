@@ -3,12 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ParcelaController extends Controller
 {
     public function index()
     {
         return view('calcular-parcelas');
+    }
+    public function gerarPDF(Request $request)
+    {
+        $data = [
+            'valorMulta' => (float) $request->input('valor_multa'),
+            'numeroParcelas' => (int) $request->input('numero_parcelas'),
+            'parcelas' => json_decode($request->input('parcelas'), true),
+            'valorTotal' => (float) $request->input('valor_total'),
+        ];
+
+        $pdf = PDF::loadView('pdf.gerar-pdf', $data);
+        return $pdf->download('parcelamento-eagles-despachante.pdf');
     }
 
     public function calcular(Request $request)
