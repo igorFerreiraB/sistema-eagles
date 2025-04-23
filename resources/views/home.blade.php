@@ -101,6 +101,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <img src="{{ asset('images/pulse.png') }}" alt="Dashboard de serviços" class="img-fluid move-image">
+                </div>
             </div>
         </div>
     </section>

@@ -220,12 +220,12 @@ body {
     border-color: var(--accent-blue);
 }
 
-/* .move-image {
+.move-image {
     position: relative;
     top: -05px;
     margin-left: 155px;
     transition: all 0.3s ease;
-} */
+}
 
 /* Responsive */
 @media (max-width: 768px) {
