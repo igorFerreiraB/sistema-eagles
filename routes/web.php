@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/consulta-veicular', [PlacaController::class, 'index'])->name('consulta-veicular');
         Route::post('/consulta-veicular', [PlacaController::class, 'consultar'])->name('consulta-veicular.post');
 
-        // Route::get('/historico', [HistoricoVeicularController::class, 'index'])->name('historico.index');
+        Route::get('/historico', [PlacaController::class, 'historico'])->name('historico');
     });
 
 
