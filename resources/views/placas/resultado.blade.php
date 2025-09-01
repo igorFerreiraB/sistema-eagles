@@ -106,7 +106,7 @@
                         @if(isset($resultado['chassi']))
                             <li class="list-group-item d-flex justify-content-between">
                                 <span><strong>Chassi:</strong></span>
-                                <span>{{ $resultado['chassi'] }}</span>
+                                <span>{{ $resultado['extra']['chassi'] }}</span>
                             </li>
                         @endif
                     </ul>
