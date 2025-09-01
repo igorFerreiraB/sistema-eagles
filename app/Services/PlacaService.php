@@ -42,4 +42,9 @@ class PlacaService
             return null;
         }
     }
+    
+    public function historicoDoUsuario(int $perPage = 15, ?string $placa = null)
+    {
+        return $this->repo->listarDoUsuario(auth()->id(), $perPage, $placa);
+    }
 }
