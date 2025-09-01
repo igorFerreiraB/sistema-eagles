@@ -14,11 +14,12 @@ class PlacaRepository
             'resultado' => $json,
         ]);
     }
-    
-    public function listarDoUsuario(int $userId, int $perPage = 15)
+
+    public function listarDoUsuario(int $userId, int $perPage = 15, ?string $placa = null)
     {
         return PlacaConsulta::query()
             ->where('user_id', $userId)
+            ->when($placa, fn($query) => $query->where('placa', strtoupper($placa)))
             ->latest()
             ->paginate($perPage);
     }
