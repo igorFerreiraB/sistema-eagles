@@ -9,5 +9,11 @@ class PlacaConsulta extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['placa', 'user_id', 'ip_address'];
+    protected $table = 'placa_consulta';
+
+    protected $fillable = ['placa', 'resultado'];
+
+    protected $casts = [
+        'resultado' => 'array',
+    ];
 }
