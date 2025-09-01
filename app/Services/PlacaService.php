@@ -30,7 +30,7 @@ class PlacaService
 
             if ($response->successful()) {
                 $json = $response->json();
-                $this->repo->criar($placa, $json);
+                $this->repo->criar($placa, $json, auth()->id());
                 return $json;
             }
 
