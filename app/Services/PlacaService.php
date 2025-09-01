@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Repositories\PlacaRepository;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -10,7 +11,7 @@ class PlacaService
     protected $baseUrl;
     protected $token;
 
-    public function __construct()
+    public function __construct(protected PlacaRepository $repo)
     {
         $this->baseUrl = config('services.placas.url');
         $this->token = config('services.placas.token');
@@ -28,7 +29,9 @@ class PlacaService
             Log::debug("Conteúdo da resposta: " . $response->body());
 
             if ($response->successful()) {
-                return $response->json();
+                $json = $response->json();
+                $this->repo->criar($placa, $json);
+                return $json;
             }
 
             Log::error("Erro na consulta: " . $response->status());
