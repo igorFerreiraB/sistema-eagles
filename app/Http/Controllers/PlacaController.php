@@ -42,12 +42,4 @@ class PlacaController extends Controller
         Log::debug("Consulta bem-sucedida para placa: {$placa}");
         return view('placas.resultado', compact('resultado'));
     }
-
-    public function historico(\Illuminate\Http\Request $request)
-    {
-        $placa = $request->query('placa');
-        $consultas = $this->placaService->historicoDoUsuario(15, $placa);
-
-        return view('placas.historico', compact('consultas', 'placa'));
-    }
 }
