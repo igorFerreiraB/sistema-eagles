@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\PlacaCache;
+use App\Repositories\PlacaRepository;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -9,34 +11,43 @@ class PlacaService
 {
     protected $baseUrl;
     protected $token;
+    protected PlacaRepository $repository;
 
-    public function __construct()
+    public function __construct(PlacaRepository $repository)
     {
         $this->baseUrl = config('services.placas.url');
         $this->token = config('services.placas.token');
+        $this->repository = $repository;
     }
 
     public function consultarPlaca($placa)
     {
-        try {
-            $url = "{$this->baseUrl}{$placa}/{$this->token}";
-            Log::debug("Consultando API de placas: {$url}");
+        $cache = PlacaCache::where('placa', $placa)->first();
 
-            $response = Http::timeout(30)->get($url);
-
-            Log::debug("Resposta da API: " . $response->status());
-            Log::debug("Conteúdo da resposta: " . $response->body());
-
-            if ($response->successful()) {
-                return $response->json();
-            }
-
-            Log::error("Erro na consulta: " . $response->status());
-            return null;
-
-        } catch (\Exception $e) {
-            Log::error("Exceção na consulta: " . $e->getMessage());
-            return null;
+        if ($cache) {
+            Log::debug("Dados encontrados no banco para a placa: {$placa}");
+            return $cache->dados;
         }
+
+        $url = "{$this->baseUrl}{$placa}/{$this->token}";
+        Log::debug("Consultando API de placas: {$url}");
+
+        $response = Http::timeout(30)->get($url);
+
+        Log::debug("Resposta da API: " . $response->status());
+        Log::debug("Conteúdo da resposta: " . $response->body());
+
+        if ($response->successful()) {
+            $dados = $response->json();
+
+            $this->repository->criar($placa, $dados);
+
+            Log::debug("Dados armazenados no cache para a placa: {$placa}");
+
+            return $dados;
+        }
+
+        Log::error("Erro na consulta: " . $response->status());
+        return null;
     }
 }
