@@ -42,7 +42,7 @@ class PlacaService
 
             $this->repository->criar($placa, $dados);
 
-            Log::debug("Dados armazenados no cache para a placa: {$placa}");
+            Log::debug("Dados armazenados no banco para a placa: {$placa}");
 
             return $dados;
         }
