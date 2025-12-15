@@ -2,15 +2,15 @@
 
 namespace App\Repositories;
 
-use App\Models\PlacaConsulta;
+use App\Models\PlacaCache;
 
 class PlacaRepository
 {
-    public function criar(string $placa, string|array $json): PlacaConsulta
+    public function criar(string $placa, string|array $dados): PlacaCache
     {
-        return PlacaConsulta::create([
-            'placa'     => strtoupper($placa),
-            'resultado' => $json,
+        return PlacaCache::create([
+            'placa' => $placa,
+            'dados' => $dados
         ]);
     }
 }
