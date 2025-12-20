@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HistoricoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
@@ -33,7 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/consulta-veicular', [PlacaController::class, 'index'])->name('consulta-veicular');
         Route::post('/consulta-veicular', [PlacaController::class, 'consultar'])->name('consulta-veicular.post');
 
-        Route::get('/historico', [PlacaController::class, 'historico'])->name('historico');
+        Route::get('/historico-consultas', [HistoricoController::class, 'historico'])->name('historico-consultas');
     });
 
 
