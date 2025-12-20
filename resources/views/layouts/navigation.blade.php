@@ -82,6 +82,13 @@
                             <p>Consulta de Placas</p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.historico-consultas') }}" class="nav-link {{ request()->routeIs('historico.consultas') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-history"></i>
+                            <p>Histórico de Consultas</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
