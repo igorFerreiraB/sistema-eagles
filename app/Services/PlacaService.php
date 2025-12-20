@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\PlacaCache;
 use App\Repositories\PlacaRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -40,7 +41,7 @@ class PlacaService
         if ($response->successful()) {
             $dados = $response->json();
 
-            $this->repository->criar($placa, $dados);
+            $this->repository->criar($placa, $dados, Auth::id());
 
             Log::debug("Dados armazenados no banco para a placa: {$placa}");
 
@@ -49,5 +50,10 @@ class PlacaService
 
         Log::error("Erro na consulta: " . $response->status());
         return null;
+    }
+
+    public function obterHistoricoPorUsuario(int $userId)
+    {
+        return PlacaCache::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
     }
 }
