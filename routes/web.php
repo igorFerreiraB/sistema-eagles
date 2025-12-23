@@ -35,6 +35,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/consulta-veicular', [PlacaController::class, 'consultar'])->name('consulta-veicular.post');
 
         Route::get('/historico-consultas', [HistoricoController::class, 'historico'])->name('historico-consultas');
+        Route::get('/historico/{id}', [HistoricoController::class, 'show'])->name('placas.historico.show');
+
     });
 
 
