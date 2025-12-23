@@ -21,6 +21,7 @@
                             <th>Marca/Modelo</th>
                             <th>Ano</th>
                             <th>Data da Consulta</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +31,12 @@
                                 <td>{{ $consulta->dados['marcaModelo'] ?? '-' }}</td>
                                 <td>{{ $consulta->dados['ano'] ?? - '-' }}</td>
                                 <td>{{ $consulta->created_at->format('d/m/Y H:i') }}</td>
+                                <td>
+                                    <a href="{{ route('dashboard.placas.historico.show', $consulta->id) }}"
+                                    class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i> Visualizar
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
