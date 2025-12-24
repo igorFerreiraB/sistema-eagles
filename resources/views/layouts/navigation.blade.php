@@ -25,6 +25,7 @@
                 <ul class="dropdown-menu" aria-labelledby="routesDropdown">
                     <li><a class="dropdown-item" href="{{ route('dashboard.calcular-parcelas') }}"> Calcular Parcelas</a></li>
                     <li><a class="dropdown-item" href="{{ route('dashboard.consulta-veicular') }}"> Consulta veicular</a></li>
+                    <li><a class="dropdown-item" href="{{ route('dashboard.historico-consultas') }}"> Histórico de Consultas</a></li>
                 </ul>
             </li>
         </ul>
@@ -58,7 +59,7 @@
     <!-- Sidebar -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="{{ route('dashboard') }}" class="brand-link d-flex align-items-center">
-            <img src="{{ asset('images/eagles.png') }}" alt="Eagles Despachante" style="width: 40px; height: 40px; margin-right: 10px;">
+            <img src="{{ asset('images/eagles.png') }}" alt="Eagles Despachante" style="width: 30px; height:30px; margin-right: 10px;">
             <span class="brand-text font-weight-light">Eagles Despachante</span>
         </a>
         <div class="sidebar">
